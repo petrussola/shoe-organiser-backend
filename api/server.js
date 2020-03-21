@@ -3,6 +3,9 @@ const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 
+// HELPERS
+const routes = require('./routes/routes');
+
 // INSTANTIATE EXPRESS TO CREATE SERVER
 const server = express();
 
@@ -11,10 +14,8 @@ server.use(helmet());
 server.use(cors());
 server.use(express.json());
 
-// ENDPOINTS
+// ROUTER ENDPOINTS
 
-server.get('/', (req, res) => {
-    res.status(200).json({ message: 'hello' });
-});
+server.use('/', routes);
 
 module.exports = server;
