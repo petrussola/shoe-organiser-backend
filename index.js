@@ -1,15 +1,8 @@
+// SERVER
+const server = require('./api/server');
+
 // DEPENDENCIES
-const express = require('express');
-const cors = require('cors');
 require('dotenv').config();
-
-const server = express();
-server.use(cors());
-server.use(express.json());
-
-server.get('/', (req, res) => {
-    res.json('hello');
-});
 
 const port = process.env.PORT;
 
