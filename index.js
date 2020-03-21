@@ -1,6 +1,7 @@
 // DEPENDENCIES
 const express = require('express');
 const cors = require('cors');
+require('dotenv').config();
 
 const server = express();
 server.use(cors());
@@ -10,7 +11,7 @@ server.get('/', (req, res) => {
     res.json('hello');
 });
 
-const port = 5000;
+const port = process.env.PORT;
 
 server.listen(port, () => {
     // eslint-disable-next-line no-console
