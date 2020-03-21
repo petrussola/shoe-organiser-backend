@@ -5,7 +5,12 @@
     "main": "index.js",
     "scripts": {
         "test": "jest --runInBand --forceExit",
-        "server": "nodemon index.js"
+        "server": "nodemon index.js",
+        "start": "node index.js"
+    },
+    "engines": {
+        "node": "10.16.1",
+        "npm": "6.13.2"
     },
     "keywords": [],
     "author": "",
