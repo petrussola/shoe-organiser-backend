@@ -14,8 +14,12 @@ server.use(helmet());
 server.use(cors());
 server.use(express.json());
 
-// ROUTER ENDPOINTS
-
+// ROUTE ENDPOINTS
 server.use('/', routes);
+
+// ROUTE ERROR FALLBACK
+server.use(function errors(err, req, res) {
+    return res.status(500).json({ err });
+});
 
 module.exports = server;
