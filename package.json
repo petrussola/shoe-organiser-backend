@@ -4,7 +4,8 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "test": "jest --runInBand --forceExit"
+        "test": "jest --runInBand --forceExit",
+        "server": "nodemon index.js"
     },
     "keywords": [],
     "author": "",
@@ -34,7 +35,7 @@
     "prettier": {
         "trailingComma": "es5",
         "tabWidth": 4,
-        "semi": false,
+        "semi": true,
         "singleQuote": true,
         "bracketSpacing": true
     },
