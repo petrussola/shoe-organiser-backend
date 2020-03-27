@@ -4,8 +4,8 @@ const cors = require('cors');
 const helmet = require('helmet');
 
 // HELPERS
-const routes = require('./routes/routes');
 const authRoute = require('./routes/authroute');
+const boxRoute = require('./routes/boxroute');
 
 // INSTANTIATE EXPRESS TO CREATE SERVER
 const server = express();
@@ -16,8 +16,8 @@ server.use(cors());
 server.use(express.json());
 
 // ROUTE ENDPOINTS
-server.use('/', routes);
 server.use('/api/auth', authRoute);
+server.use('/api/box', boxRoute);
 
 // ROUTE ERROR FALLBACK
 // server.use(function errors(err, req, res) {
