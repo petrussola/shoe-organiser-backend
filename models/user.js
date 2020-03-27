@@ -1,5 +1,11 @@
 const db = require('../config/db-config');
 
+function getUserBy(email) {
+    return db('users')
+        .where({ email })
+        .first();
+}
+
 function getUserById(id) {
     return db('users')
         .where({ id })
@@ -16,4 +22,6 @@ function createUser(user) {
 
 module.exports = {
     createUser,
+    getUserById,
+    getUserBy,
 };
