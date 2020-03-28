@@ -12,8 +12,21 @@ async function getBoxes(req, res) {
         });
     }
 }
-// async function createBox(req, res) {}
+async function createBox(req, res) {
+    try {
+        const { boxNumber } = req.body;
+        const newBox = await Box.createBox(boxNumber);
+        return res.status(200).json({
+            status: 'success',
+            message: 'New box has been created',
+            data: newBox,
+        });
+    } catch (error) {
+        return res.status(500).json({ status: 'fail', message: error.message });
+    }
+}
 
 module.exports = {
     getBoxes,
+    createBox,
 };
