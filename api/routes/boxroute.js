@@ -2,7 +2,12 @@
 const express = require('express');
 
 // CONTROLLERS
-const { getBoxes, createBox, deleteBox } = require('../controllers/box');
+const {
+    getBoxes,
+    createBox,
+    deleteBox,
+    editBox,
+} = require('../controllers/box');
 
 // MIDDLEWARE
 const {
@@ -17,5 +22,6 @@ const router = express.Router();
 router.get('/', getBoxes);
 router.post('/create', checkBoxIdBody, createBox);
 router.delete('/:boxNumber/delete', checkBoxIdParams, deleteBox);
+router.put('/:boxNumber/edit', checkBoxIdParams, editBox);
 
 module.exports = router;
