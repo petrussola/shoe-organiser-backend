@@ -1,3 +1,4 @@
+// HELPERS
 const db = require('../config/db-config');
 
 function getUserBy(email) {
