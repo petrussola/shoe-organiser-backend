@@ -32,7 +32,14 @@ async function createBox(boxNumber) {
     }
 }
 
+function deleteBox(boxNumber) {
+    return db('boxes')
+        .where({ box_number: boxNumber })
+        .del();
+}
+
 module.exports = {
     getAllBoxes,
     createBox,
+    deleteBox,
 };
