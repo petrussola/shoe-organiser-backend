@@ -44,7 +44,10 @@ async function loginUser(req, res) {
                 },
             });
         } else {
-            throw Error('Invalid credentials');
+            res.status(500).json({
+                status: 'fail',
+                message: 'Invalid credentials',
+            });
         }
     } catch (error) {
         res.status(500).json({
