@@ -1,3 +1,4 @@
+// HELPERS
 const db = require('../config/db-config');
 
 function getAllBoxes() {
@@ -42,4 +43,5 @@ module.exports = {
     getAllBoxes,
     createBox,
     deleteBox,
+    getBoxById,
 };

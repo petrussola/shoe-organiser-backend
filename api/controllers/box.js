@@ -27,18 +27,13 @@ async function createBox(req, res) {
 }
 
 async function deleteBox(req, res) {
-    const { boxNumber } = req.params;
     try {
-        const deleted = await Box.deleteBox(boxNumber);
-        if (deleted) {
-            res.status(200).json({
-                message: `Box ${boxNumber} has been succesfully deleted`,
-            });
-        } else {
-            throw new Error(
-                'There was a problem deleting your box. Please try again.'
-            );
-        }
+        // eslint-disable-next-line no-unused-vars
+        const deleted = await Box.deleteBox(req.boxNumber);
+        res.status(200).json({
+            status: 'success',
+            message: `Box ${req.boxNumber} has been succesfully deleted`,
+        });
     } catch (error) {
         res.status(500).json({ status: 'fail', message: error.message });
     }
