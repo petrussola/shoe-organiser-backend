@@ -2,12 +2,13 @@
 const express = require('express');
 
 // CONTROLLERS
-const { createBox } = require('../controllers/user.js');
+const { getBoxes, createBox } = require('../controllers/box');
 
 // INSTANTIATE ROUTER
 const router = express.Router();
 
 // ENDPOINTS
+router.get('/', getBoxes);
 router.post('/create', createBox);
 
 module.exports = router;
