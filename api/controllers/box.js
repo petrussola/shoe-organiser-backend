@@ -4,7 +4,7 @@ const Box = require('../../models/box');
 async function getBoxes(req, res) {
     const { userId } = req;
     try {
-        const boxes = await Box.getAllBoxes(userId);
+        const boxes = await Box.getAllBoxes({ userId });
         res.status(200).json(boxes);
     } catch (error) {
         res.status(500).json({
@@ -15,8 +15,9 @@ async function getBoxes(req, res) {
 }
 async function createBox(req, res) {
     const { boxNumber } = req.body;
+    const { userId } = req;
     try {
-        const newBox = await Box.createBox(boxNumber);
+        const newBox = await Box.createBox(boxNumber, userId);
         return res.status(200).json({
             status: 'success',
             message: 'New box has been created',
@@ -44,14 +45,22 @@ async function deleteBox(req, res) {
 async function editBox(req, res) {
     const { boxNumber } = req;
     const newBoxNumber = req.body.boxNumber;
-    try {
-        await Box.editBox(boxNumber, newBoxNumber);
-        res.status(200).json({
-            status: 'success',
-            message: `Box ${boxNumber} has been edited. The new number is ${newBoxNumber}`,
+    if (boxNumber !== newBoxNumber) {
+        try {
+            const newBox = await Box.editBox(boxNumber, newBoxNumber);
+            res.status(200).json({
+                status: 'success',
+                message: `Box ${boxNumber} has been edited. The new number is ${newBoxNumber}`,
+                data: newBox,
+            });
+        } catch (error) {
+            res.status(500).json({ status: 'fail', message: error.message });
+        }
+    } else {
+        res.status(500).json({
+            status: 'fail',
+            message: `Please select a new number. The one provided (${newBoxNumber}) is the same as the existing one: ${boxNumber}.`,
         });
-    } catch (error) {
-        res.status(500).json({ status: 'fail', message: error.message });
     }
 }
 

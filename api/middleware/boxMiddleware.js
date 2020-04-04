@@ -7,7 +7,7 @@ async function checkBoxIdParams(req, res, next) {
     try {
         const box = await Box.getBoxById(boxNumber);
         if (box) {
-            req.boxNumber = boxNumber;
+            req.boxNumber = parseInt(boxNumber, 10);
             next();
         } else {
             throw new Error(`Box ${boxNumber} does not exist`);
