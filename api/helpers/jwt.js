@@ -4,6 +4,7 @@ async function generateToken(user) {
     const payload = {
         email: user.email,
         name: user.name,
+        id: user.id,
     };
     const options = {
         expiresIn: '5d',

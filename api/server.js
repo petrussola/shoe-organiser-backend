@@ -6,6 +6,7 @@ const helmet = require('helmet');
 // HELPERS
 const authRoute = require('./routes/authroute');
 const boxRoute = require('./routes/boxroute');
+const shoeRoute = require('./routes/shoeroute');
 
 // INSTANTIATE EXPRESS TO CREATE SERVER
 const server = express();
@@ -18,6 +19,7 @@ server.use(express.json());
 // ROUTE ENDPOINTS
 server.use('/api/auth', authRoute);
 server.use('/api/box', boxRoute);
+server.use('/api/shoe', shoeRoute);
 
 // ROUTE ERROR FALLBACK
 // server.use(function errors(err, req, res) {
