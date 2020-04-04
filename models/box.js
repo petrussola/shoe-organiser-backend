@@ -1,8 +1,8 @@
 // HELPERS
 const db = require('../config/db-config');
 
-function getAllBoxes() {
-    return db('boxes');
+function getAllBoxes(userId) {
+    return db('boxes').where(userId);
 }
 
 function getBoxById(boxNumber) {

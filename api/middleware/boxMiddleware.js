@@ -1,6 +1,7 @@
 // MODELS
 const Box = require('../../models/box');
 
+// checks if box id exists. We need it before editing or deleting a box
 async function checkBoxIdParams(req, res, next) {
     const { boxNumber } = req.params;
     try {
@@ -15,7 +16,7 @@ async function checkBoxIdParams(req, res, next) {
         res.status(500).json({ status: 'fail', message: error.message });
     }
 }
-
+// checks if the required fields are passed to the model. Necessary to create a box
 async function checkBoxIdBody(req, res, next) {
     const { boxNumber } = req.body;
     try {

@@ -14,14 +14,19 @@ const {
     checkBoxIdParams,
     checkBoxIdBody,
 } = require('../middleware/boxMiddleware');
+const { isUserAuthorized } = require('../middleware/authMiddleware');
 
 // INSTANTIATE ROUTER
 const router = express.Router();
 
 // ENDPOINTS
-router.get('/', getBoxes);
-router.post('/create', checkBoxIdBody, createBox);
-router.delete('/:boxNumber/delete', checkBoxIdParams, deleteBox);
-router.put('/:boxNumber/edit', checkBoxIdParams, editBox);
+router.get('/', isUserAuthorized, getBoxes);
+router.post('/create', [isUserAuthorized, checkBoxIdBody], createBox);
+router.delete(
+    '/:boxNumber/delete',
+    [isUserAuthorized, checkBoxIdParams],
+    deleteBox
+);
+router.put('/:boxNumber/edit', [isUserAuthorized, checkBoxIdParams], editBox);
 
 module.exports = router;

@@ -2,8 +2,9 @@
 const Box = require('../../models/box');
 
 async function getBoxes(req, res) {
+    const { userId } = req;
     try {
-        const boxes = await Box.getAllBoxes();
+        const boxes = await Box.getAllBoxes(userId);
         res.status(200).json(boxes);
     } catch (error) {
         res.status(500).json({
