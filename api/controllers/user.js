@@ -21,10 +21,17 @@ async function createUser(req, res) {
             user: { ...userFromDb, password: '' },
         });
     } catch (error) {
-        res.status(500).json({
-            message: 'There was an error',
-            error: error.message,
-        });
+        if (error.constraint === 'users_email_unique') {
+            res.status(500).json({
+                message: 'Email submited already exists in the database',
+                error: error.message,
+            });
+        } else {
+            res.status(500).json({
+                message: 'There was an error',
+                error: error.message,
+            });
+        }
     }
 }
 
